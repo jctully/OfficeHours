@@ -25,7 +25,47 @@
 
 \section{Introduction}
 
+There is no central app, website, or database that has been developed for Western that contains all office hours for each department on campus. This is because professor's office hours depend on several factors that can hard to keep track of in a central place, but by providing an app that allows a professor to update a database when their set office hours time changes this can solve a lot of traditional ways of getting the changes out such as e-mail or an in-class announcement. With the introduction of a student wait list for office hours, professors can also be conscious about how much time they spend with a student, which is a common issue where a professor will spend well over 10 minutes while there is 5+ students outside the door trying to get help. The end goal is to develop an app that can assist students and professors by making having office hours in a public central place and allowing them to be easily updated for the professor.
 
+\section{Assumptions \&\ Dependencies}
 
+\subsection{Assumptions}
+Assume that students will primarily use the app to check if a professor is available for office hours or queue up in a wait list for the office. Also, assume that all office hours are publicly available and accurate upon obtaining them, especially when a new quarter starts. For professors, we'll assume that the professor is responsible for changing their office hour times and that they'll notify the next student on the top of the wait list via the app when they are done helping the current student. \\
+\subsection{Assumptions}
+In terms of dependencies, we'll be utilizing a database. Whether this will be a SQL or Firebase database will be determined before Project Checkpoint 1. This database will need to store multiple data items such as the office hour times, status of the office, and students waitlisted. We will also be utilizing the GPS feature built-in to android phones in order to remove students from the wait list if they leave within a certain radius of the office. For example, if a student is waiting for an office in the Communications Facility and moves to Academic West, they will be kicked off the queue because it is unfair for other students to wait an additional amount of time for that student to return to the office. 
+
+\pagebreak
+
+\section{Scope}
+
+\\
+\subsection{Scope of Release}
+On release, the app will focus on centralizing the computer science department's office hours and making them the first available office hours that can be viewed and queued up by students. If time permits, a student from the Linguistics Department may also help us by gathering office hour times for their professors. Professors will be able to change the status of their office and indicate when they are ready to see the next student. Maps will be drawn from publicly available floor plans.
+\subsection{Scope of Future Releases}
+In the future, the app will be extended to more departments. Eventually, Western should utilize a central database that stores all the professor's office hours and have it easily updated via a website portal. Professors can have more control over what they wish to display for their information window such as pictures, profiles, and links to personal websites. In terms of style, this project can branch to the Art department by hiring an artist to make the floor plans stylish instead of the basic floor plan art. As suggested by Phil Nelson, this app can be generalized and branch out to more universities. We can also charge students a small convenience fee of \$1.\
+
+\section{Features}
+
+\begin{tabular}{ |p{7cm}|p{9cm}|  }
+\hline
+\multicolumn{2}{|c|}{Feature List} \\
+\hline
+\bfseries{Feature Name}& \bfseries{Description} \\
+\hline
+Centralized Database & Database will store everything related to a professor's office/office hours and will contain the student wait list.\\
+\hline
+Student Wait List & Student will be able to queue up for office hours if a student is currently being helped.\\
+\hline
+Map of Offices with Markers & Visual aid that will help students know if a professor is holding office hours, helping a student (with the size of the queue on the marker), or not holding office hours.\\
+\hline
+GPS Feature & This will track the student's current location, if they leave within a certain radius of that professor's office while wait-listed, they'll be kicked off the queue.\\
+\hline
+Student Notifications & The student at the top of the wait list will be notified once the professor signals them (via a button) that it is their time to attend office hours. \\
+\hline
+Differentiate between Student,Professor & Students will be able to view the map and see when office hours are held and wait list, but for professors they will need a different activity that allows them to change the status of their office and notify students. This can be done with different log-ins.\\
+\hline
+
+\hline
+\end{tabular}
 
 \end{document}
