@@ -8,12 +8,12 @@ in an inefficient manner for a professor's office hours.
 
 ## Current Developers
 
-Michael Farrier
-Ken Jung
-Joseph Tully
+Michael Farrier  
+Ken Jung  
+Joseph Tully  
 
 ## Time Logs
 
-[Michael's Time Log](https://gitlab.cs.wwu.edu/farriem/officehours/wikis/Michael's-Time-Log)
-[Ken's Time Log](https://gitlab.cs.wwu.edu/farriem/officehours/wikis/Ken's-Time-Log)
-[Joseph's Time Log](https://gitlab.cs.wwu.edu/farriem/officehours/wikis/Joseph's-Time-log)
+[Michael's Time Log](https://gitlab.cs.wwu.edu/farriem/officehours/wikis/Michael's-Time-Log)  
+[Ken's Time Log](https://gitlab.cs.wwu.edu/farriem/officehours/wikis/Ken's-Time-Log)  
+[Joseph's Time Log](https://gitlab.cs.wwu.edu/farriem/officehours/wikis/Joseph's-Time-log)  
