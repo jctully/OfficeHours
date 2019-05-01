@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "334115050039",
+    "firebase_url": "https://wwuofficehours.firebaseio.com",
+    "project_id": "wwuofficehours",
+    "storage_bucket": "wwuofficehours.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:334115050039:android:fef13f670af5c797",
+        "android_client_info": {
+          "package_name": "tmb.csci412.wwu.officehours"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "334115050039-436i422hngauhdutnsa0jeekofp8j0am.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "tmb.csci412.wwu.officehours",
+            "certificate_hash": "8c389bafe6bc5e039707745d7879807e504f6886"
+          }
+        },
+        {
+          "client_id": "334115050039-jt8qg3rlc4n2vfjrovn44kgknsl3kkq8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmdrE3SrXWnhTx_PuqzRwCMTW-EbFxNAw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "334115050039-jt8qg3rlc4n2vfjrovn44kgknsl3kkq8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
