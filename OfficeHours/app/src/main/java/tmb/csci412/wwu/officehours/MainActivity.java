@@ -6,31 +6,57 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-
-import java.util.ArrayList;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    ArrayList<Professor> professors;
-
-
+    private DrawerLayout d1;
+    private ActionBarDrawerToggle t;
+    private NavigationView nv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        // Lookup the recyclerview in activity layout
-        RecyclerView rvProfs = (RecyclerView) findViewById(R.id.rvProfs);
 
-        // Initialize contacts
-        professors = Professor.createProfList(20);
-        // Create adapter passing in the sample user data
-        ProfessorAdapter adapter = new ProfessorAdapter(professors);
-        // Attach the adapter to the recyclerview to populate items
-        rvProfs.setAdapter(adapter);
-        // Set layout manager to position the items
-        rvProfs.setLayoutManager(new LinearLayoutManager(this));
-        // That's all!
+        //instantiate the drawer and toggle
+        d1 = findViewById(R.id.activity_main);
+        t =new ActionBarDrawerToggle(this, d1, R.string.Open, R.string.Close);
+
+        // add listener to the toggle to activate drawer
+        d1.addDrawerListener(t);
+        t.syncState();
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        //
+        nv = findViewById(R.id.nv);
+        nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id = item.getItemId();
+                switch(id) {
+                    case R.id.account:
+                        Toast.makeText(MainActivity.this, "Professors", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.settings:
+                        Toast.makeText(MainActivity.this, "Settings", Toast.LENGTH_SHORT).show();
+                        break;
+                    default:
+                        return true;
+                }
+
+                return true;
+            }
+        });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(t.onOptionsItemSelected(item)) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
