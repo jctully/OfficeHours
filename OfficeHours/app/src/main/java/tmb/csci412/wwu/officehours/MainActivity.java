@@ -8,12 +8,23 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
+import android.util.Log;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout d1;
     private ActionBarDrawerToggle t;
     private NavigationView nv;
+    private String TAG = "MainActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +60,28 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        // FIREBASE Start-Up
+        FirebaseDatabase db = FirebaseDatabase.getInstance();
+        DatabaseReference locRef = db.getReference("locations")
+                .child("CF_Floor4");
+
+        locRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String value = dataSnapshot.getValue(String.class);
+                Log.d(TAG, "Value is: " + value);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.w(TAG, "FIREBASE Set-Up Failed", databaseError.toException());
+            }
+        });
+
+
+
+
     }
 
     @Override
@@ -59,4 +92,6 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
 }
