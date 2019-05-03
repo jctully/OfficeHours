@@ -48,10 +48,10 @@ public class MainActivity extends AppCompatActivity {
                 int id = item.getItemId();
                 switch(id) {
                     case R.id.account:
-                        Toast.makeText(MainActivity.this, "Professors", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, R.string.profList, Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.settings:
-                        Toast.makeText(MainActivity.this, "Settings", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, R.string.settings, Toast.LENGTH_SHORT).show();
                         break;
                     default:
                         return true;
