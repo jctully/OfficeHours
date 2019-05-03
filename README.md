@@ -17,3 +17,7 @@ Joseph Tully
 [Michael's Time Log](https://gitlab.cs.wwu.edu/farriem/officehours/wikis/Michael's-Time-Log)  
 [Ken's Time Log](https://gitlab.cs.wwu.edu/farriem/officehours/wikis/Ken's-Time-Log)  
 [Joseph's Time Log](https://gitlab.cs.wwu.edu/farriem/officehours/wikis/Joseph's-Time-log)  
+
+## Checkpoints
+
+[Checkpoint 1](https://gitlab.cs.wwu.edu/farriem/officehours/wikis/Checkpoint-1)
