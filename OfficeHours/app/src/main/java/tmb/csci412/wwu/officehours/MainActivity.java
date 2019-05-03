@@ -64,7 +64,8 @@ public class MainActivity extends AppCompatActivity {
         // FIREBASE Start-Up
         FirebaseDatabase db = FirebaseDatabase.getInstance();
         DatabaseReference locRef = db.getReference("locations")
-                .child("CF_Floor4");
+                .child("CF_Floor4")
+                .child("dept");
 
         locRef.addValueEventListener(new ValueEventListener() {
             @Override
