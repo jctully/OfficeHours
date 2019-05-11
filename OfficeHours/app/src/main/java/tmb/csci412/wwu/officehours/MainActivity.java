@@ -1,63 +1,49 @@
 package tmb.csci412.wwu.officehours;
 
+
+import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.design.widget.NavigationView;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
 import android.util.Log;
-
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import com.google.firebase.database.FirebaseDatabase;
+
 
 public class MainActivity extends AppCompatActivity {
 
-    private DrawerLayout d1;
-    private ActionBarDrawerToggle t;
-    private NavigationView nv;
     private String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        // Bottom Navigation Bar
+        BottomNavigationView bnv = (BottomNavigationView) findViewById(R.id.bottom_navigation);
 
-        //instantiate the drawer and toggle
-        d1 = findViewById(R.id.activity_main);
-        t =new ActionBarDrawerToggle(this, d1, R.string.Open, R.string.Close);
-
-        // add listener to the toggle to activate drawer
-        d1.addDrawerListener(t);
-        t.syncState();
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        //
-        nv = findViewById(R.id.nv);
-        nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+        bnv.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                int id = item.getItemId();
-                switch(id) {
-                    case R.id.account:
-                        Toast.makeText(MainActivity.this, R.string.profList, Toast.LENGTH_SHORT).show();
+                switch(item.getItemId()) {
+                    case R.id.prof:
+                        Toast.makeText(MainActivity.this, "Pressed Prof", Toast.LENGTH_SHORT).show();
+
                         break;
                     case R.id.settings:
-                        Toast.makeText(MainActivity.this, R.string.settings, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "Pressed Settings", Toast.LENGTH_SHORT).show();
                         break;
-                    default:
-                        return true;
+                    case R.id.map_view:
+                        Toast.makeText(MainActivity.this, "Pressed Map View", Toast.LENGTH_SHORT).show();
+                        break;
                 }
-
-                return true;
+                return false;
             }
         });
 
@@ -79,20 +65,5 @@ public class MainActivity extends AppCompatActivity {
                 Log.w(TAG, "FIREBASE Set-Up Failed", databaseError.toException());
             }
         });
-
-
-
-
     }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if(t.onOptionsItemSelected(item)) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-
 }
