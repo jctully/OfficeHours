@@ -38,7 +38,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="30dp"
 
-        android:hint="Email"
+        android:hint="@string/profEmailEditText1"
+        android:inputType="textEmailAddress"
 
         app:layout_constraintBottom_toTopOf="@+id/loginPassInput"
         app:layout_constraintEnd_toEndOf="parent"
@@ -58,8 +59,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
 
-        android:hint="Password"
-
+        android:hint="@string/profPasswordEditText2"
+        android:inputType="textPassword"
 
         app:layout_constraintBottom_toTopOf="@+id/loginButton"
         app:layout_constraintEnd_toEndOf="parent"
@@ -81,7 +82,8 @@
         android:layout_marginTop="24dp"
 
         android:onClick="onLogin"
-        android:text="Login"
+        android:text="@string/profLoginTextButton"
+
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
