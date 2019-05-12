@@ -38,9 +38,9 @@ public class ProfessorAdapter extends RecyclerView.Adapter<ProfessorAdapter.View
         }
     }
 
-    private List<Professor> profList;
+    private List<ProfessorContent.ProfItem> profList;
 
-    public ProfessorAdapter(List<Professor> profs) {
+    public ProfessorAdapter(List<ProfessorContent.ProfItem> profs) {
         profList = profs;
     }
 
@@ -60,14 +60,14 @@ public class ProfessorAdapter extends RecyclerView.Adapter<ProfessorAdapter.View
     @Override
     public void onBindViewHolder(ProfessorAdapter.ViewHolder viewHolder, int position) {
         // Get the data model based on position
-        Professor professor = profList.get(position);
+        ProfessorContent.ProfItem prof = profList.get(position);
 
         // Set item views based on your views and data model
         TextView textView = viewHolder.nameTextView;
-        textView.setText(professor.getName());
+        textView.setText(prof.getName());
         Button button = viewHolder.messageButton;
-        button.setText(professor.isOnline() ? "Join queue" : "Offline");
-        button.setEnabled(professor.isOnline());
+        button.setText(prof.isOnline() ? "Join queue" : "Offline");
+        button.setEnabled(prof.isOnline());
     }
 
     @Override
