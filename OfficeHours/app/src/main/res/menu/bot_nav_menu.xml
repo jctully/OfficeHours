@@ -9,8 +9,8 @@
         android:title="Professors"
         app:showAsAction="ifRoom"
         android:icon="@drawable/prof_icon_24"/>
-    <item android:id="@+id/settings"
-        android:title="Settings"
+    <item android:id="@+id/login"
+        android:title="Login"
         app:showAsAction="ifRoom"
-        android:icon="@drawable/settings_icon_24"/>
+        android:icon="@drawable/login_icon_24" />
 </menu>
