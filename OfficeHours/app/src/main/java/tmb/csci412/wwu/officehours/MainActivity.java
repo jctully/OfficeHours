@@ -15,11 +15,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 import android.util.Log;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -72,23 +67,5 @@ public class MainActivity extends AppCompatActivity {
         // Set layout manager to position the items
         rvProfs.setLayoutManager(new LinearLayoutManager(this));
 
-        // FIREBASE Start-Up
-        FirebaseDatabase db = FirebaseDatabase.getInstance();
-        DatabaseReference locRef = db.getReference("locations")
-                .child("CF_Floor4")
-                .child("dept");
-
-        locRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String value = dataSnapshot.getValue(String.class);
-                Log.d(TAG, "Value is: " + value);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.w(TAG, "FIREBASE Set-Up Failed", databaseError.toException());
-            }
-        });
     }
 }

@@ -9,4 +9,11 @@
     <string name="profEmailEditText1">Email</string>
     <string name="profPasswordEditText2">Password</string>
     <string name="profLoginTextButton">Login</string>
+    <string name="mgrWelcomeText">Welcome</string>
+    <string name="mgrWaitlist">Student Waitlist</string>
+    <string name="mgrInOffice">In Office</string>
+    <string name="mgrBusy">Busy</string>
+    <string name="mgrOutOffice">Out of Office</string>
+    <string name="mgrNotifyStudent">Notify Next Student</string>
+    <string name="mgrStatusTitle">Manually Change Status</string>
 </resources>
