@@ -1,0 +1,50 @@
+\documentclass[11pt]{article} % The style of the article, and font size
+\oddsidemargin -0.0in
+\topmargin -0.5in
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\textwidth 6.25in
+\textheight 9.25in
+%\usepackage{algpseudocode} % For creating awesome looking pseudocode
+\setlength\parindent{0pt} % Sets the indentation for new paragraphs.
+\newlength\myindent
+\setlength\myindent{2em}
+\newcommand\bindent{%
+    \begingroup
+    \setlength{\itemindent}{\myindent}
+    \addtolength{\algorithmicindent}{\myindent}
+}
+\newcommand\eindent{\endgroup}
+\begin{document}
+
+\title{officeHoursWWU\\ CSCI 412, Spring 2019\\ Design Document \\ Version 1.0}
+\author{Michael Farrier, Ken Jung, Joseph Tully}
+\date{14 May 2019}
+\maketitle
+
+\pagebreak
+
+\section{Design from Checkpoint 1}
+\begin{center}
+\includegraphics[scale=0.4]{design1.png}\\
+\end{center}
+
+\pagebreak
+
+\section{Design from Checkpoint 2}
+\begin{center}
+\includegraphics[scale=0.7]{design2.png}\\
+\end{center}
+
+\pagebreak
+
+\section{Reason for Changes (Design 1 to Design 2)}
+We decided to focus on the aspect of making office hours in a easy to find place and not an app that guides a user to where the office is. By focusing on this aspect, we save a lot of time trying to manipulate floor plans and implement multiple map modifications. \\
+
+The database is now Firestore Cloud because the Real-time database provided by Firebase did not support simple queries such as finding professors where department is equal to Computer Science. Firestore does and it is much easier to work with than the previous database. \\
+
+While we may not be using a map, we still will be using GPS to track how far a student is from a building in order to make sure other students aren't waiting for a student to run back to the office once their time has come. 
+
+\end{document}
