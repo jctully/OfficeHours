@@ -23,9 +23,6 @@
             <meta-data android:name="android.app.searchable"
                 android:resource="@xml/searchable"/>
         </activity>
-        <activity android:name=".CardActivity">
-
-        </activity>
         <activity android:name=".LoginActivity">
 
         </activity>
