@@ -2,6 +2,7 @@ package tmb.csci412.wwu.officehours;
 
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.ActionBar;
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         myToolbar.inflateMenu(R.menu.option_menu);
         myToolbar.setTitle("Office Hours");
+        myToolbar.setTitleTextColor(Color.WHITE);
         myToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
