@@ -24,7 +24,8 @@ public class ProfessorAdapter extends RecyclerView.Adapter<ProfessorAdapter.View
         // Your holder should contain a member variable
         // for any view that will be set as you render a row
         public TextView nameTextView;
-        public Button messageButton;
+        public TextView hourTextView;
+        public TextView officeTextView;
 
         // We also create a constructor that accepts the entire item row
         // and does the view lookups to find each subview
@@ -34,7 +35,8 @@ public class ProfessorAdapter extends RecyclerView.Adapter<ProfessorAdapter.View
             super(itemView);
 
             nameTextView = (TextView) itemView.findViewById(R.id.prof_name);
-            messageButton = (Button) itemView.findViewById(R.id.view_queue);
+            hourTextView = (TextView) itemView.findViewById(R.id.hours);
+            officeTextView = (TextView) itemView.findViewById(R.id.office);
         }
     }
 
@@ -64,10 +66,12 @@ public class ProfessorAdapter extends RecyclerView.Adapter<ProfessorAdapter.View
 
         // Set item views based on your views and data model
         TextView textView = viewHolder.nameTextView;
+        TextView hoursText = viewHolder.hourTextView;
+        TextView officeText = viewHolder.officeTextView;
+
         textView.setText(prof.getName());
-        Button button = viewHolder.messageButton;
-        button.setText(prof.isOnline() ? "Join queue" : "Offline");
-        button.setEnabled(prof.isOnline());
+        hoursText.setText("Hours: ");
+        officeText.setText("Office: ");
     }
 
     @Override

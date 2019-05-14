@@ -7,12 +7,12 @@
         android:enabled="true"
         android:icon="@drawable/settings_icon_24"
         android:title="Settings"
-        app:showAsAction="never" />
+        app:showAsAction="never"
+        />
     <item
         android:id="@+id/login"
         android:title="Login"
         android:enabled="true"
-
         android:icon="@drawable/login_icon_24"
         app:showAsAction="ifRoom" />
 </menu>
