@@ -16,13 +16,23 @@ import android.view.MenuItem;
 import android.widget.Toast;
 import android.util.Log;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
 import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity {
 
     private String TAG = "MainActivity";
-    ArrayList<ProfessorContent.ProfItem> professorContents;
+    ArrayList<ProfItem> professorContents;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,22 +58,48 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // RecyclerView Professor List
-        // Lookup the recyclerview in activity layout
-        RecyclerView rvProfs = (RecyclerView) findViewById(R.id.rvProfs);
 
-        // Initialize contacts TEMP
-        ProfessorContent pc = new ProfessorContent();
-        if (savedInstanceState == null) {
-            for(int i=0; i<20; i++) {
-                ProfessorContent.ProfItem newItem =  pc.createProfItem("Professor " +
-                        ++ProfessorContent.lastProfId, "Office", "startTime", "endTime");
-                pc.addItem(newItem);
-            }
-        }
-        // Create adapter passing in the sample user data
-        ProfessorAdapter adapter = new ProfessorAdapter(ProfessorContent.ITEMS);
-        // Attach the adapter to the recyclerview to populate items
-        rvProfs.setAdapter(adapter);
+        // Initialize contacts
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        // Lookup the recyclerview in activity layout
+        final RecyclerView rvProfs = (RecyclerView) findViewById(R.id.rvProfs);
+
+
+
+        //if (savedInstanceState == null) {
+            db.collection("professors")
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                    Log.d(TAG, document.getId() + " => " + document.getData());
+                                    ProfessorContent.addItem(new ProfItem(document.getId(),
+        document.getString("building"), document.getString("dep"), document.getString("room"), document.getString("email"),
+        document.getString("hours"), document.getString("picURL")));
+                                }
+
+                                // Create adapter passing in the sample user data
+                                ProfessorAdapter adapter = new ProfessorAdapter(ProfessorContent.ITEMS);
+                                // Attach the adapter to the recyclerview to populate items
+                                rvProfs.setAdapter(adapter);
+
+                            } else {
+                                Log.d(TAG, "Error getting documents: ", task.getException());
+                            }
+                        }
+                    });
+//            for(int i=0; i<5; i++) {
+//                ProfItem newItem = new ProfItem();
+//                ProfessorContent.addItem(newItem);
+//            }
+//            ProfessorContent.addItem(new ProfItem(document.getId(),
+//                    document.getString("building"), document.getString("dep"), document.getString("room"), document.getString("email"),
+//                    document.getString("hours"), document.getString("picURL")));
+       // }
+
         // Set layout manager to position the items
         rvProfs.setLayoutManager(new LinearLayoutManager(this));
 

@@ -40,9 +40,9 @@ public class ProfessorAdapter extends RecyclerView.Adapter<ProfessorAdapter.View
         }
     }
 
-    private List<ProfessorContent.ProfItem> profList;
+    private List<ProfItem> profList;
 
-    public ProfessorAdapter(List<ProfessorContent.ProfItem> profs) {
+    public ProfessorAdapter(List<ProfItem> profs) {
         profList = profs;
     }
 
@@ -62,7 +62,7 @@ public class ProfessorAdapter extends RecyclerView.Adapter<ProfessorAdapter.View
     @Override
     public void onBindViewHolder(ProfessorAdapter.ViewHolder viewHolder, int position) {
         // Get the data model based on position
-        ProfessorContent.ProfItem prof = profList.get(position);
+        ProfItem prof = profList.get(position);
 
         // Set item views based on your views and data model
         TextView textView = viewHolder.nameTextView;
@@ -70,8 +70,8 @@ public class ProfessorAdapter extends RecyclerView.Adapter<ProfessorAdapter.View
         TextView officeText = viewHolder.officeTextView;
 
         textView.setText(prof.getName());
-        hoursText.setText("Hours: ");
-        officeText.setText("Office: ");
+        hoursText.setText("Hours: " + prof.getHours());
+        officeText.setText("Office: " + prof.getRoom());
     }
 
     @Override

@@ -19,64 +19,10 @@ public class ProfessorContent {
     public ProfessorContent() {
     }
 
-    public void addItem(ProfItem p) {
+    public static void addItem(ProfItem p) {
         ITEMS.add(p);
-        ITEM_MAP.put(p.name, p);
+        ITEM_MAP.put(p.getName(), p);
     }
-
-    public ProfItem createProfItem(String name, String office, String startTime, String endTime) {
-        return new ProfItem(name, office, startTime, endTime);
-    }
-
-    public class ProfItem {
-        private String name;
-        private String office;
-        private String startTime;
-        private String endTime;
-        private boolean online;
-
-        public ProfItem(String name, String office, String startTime, String endTime) {
-            this.name = name;
-            this.office = office;
-            this.startTime = startTime;
-            this.endTime = endTime;
-            this.online = false;
-        }
-
-
-
-        //getters
-        public String getName() {
-            return name;
-        }
-
-        public boolean isOnline() {
-            return online;
-        }
-
-        public String getOffice() {
-            return office;
-        }
-
-        public String getStartTime() {
-            return startTime;
-        }
-
-        public String getEndTime() {
-            return endTime;
-        }
-
-        //setters
-        public void setOnline() {
-            this.online=true;
-        }
-
-        public void setOffline() {
-            this.online=false;
-        }
-
-    }
-
 
 }
 
