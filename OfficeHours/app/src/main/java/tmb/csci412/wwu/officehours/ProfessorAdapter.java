@@ -3,7 +3,12 @@ package tmb.csci412.wwu.officehours;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.Shape;
 import android.media.Image;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -39,6 +44,7 @@ public class ProfessorAdapter extends RecyclerView.Adapter<ProfessorAdapter.View
     public class ViewHolder extends RecyclerView.ViewHolder {
         // Your holder should contain a member variable
         // for any view that will be set as you render a row
+        public TextView indicatorTextView;
         public ImageView picImageView;
         public TextView nameTextView;
         public TextView hourTextView;
@@ -51,7 +57,7 @@ public class ProfessorAdapter extends RecyclerView.Adapter<ProfessorAdapter.View
             // Stores the itemView in a public final member variable that can be used
             // to access the context from any ViewHolder instance.
             super(itemView);
-
+            indicatorTextView = (TextView) itemView.findViewById(R.id.indicator_light);
             chevronImageView = (AppCompatImageView) itemView.findViewById(R.id.chevron_right);
             picImageView = (ImageView) itemView.findViewById(R.id.prof_pic);
             nameTextView = (TextView) itemView.findViewById(R.id.prof_name);
@@ -86,12 +92,19 @@ public class ProfessorAdapter extends RecyclerView.Adapter<ProfessorAdapter.View
         ProfItem prof = profList.get(position);
 
         // Set item views based on your views and data model
+        TextView indicatorView = viewHolder.indicatorTextView;
         ImageView picView = viewHolder.picImageView;
         TextView textView = viewHolder.nameTextView;
         TextView hoursText = viewHolder.hourTextView;
         TextView officeText = viewHolder.officeTextView;
-        AppCompatImageView chevronImage = viewHolder.chevronImageView;
 
+        GradientDrawable gd = (GradientDrawable)indicatorView.getBackground();
+        if (prof.isOnline()) {
+            gd.setColor(ContextCompat.getColor(indicatorView.getContext(), R.color.colorGreen));
+        }
+        else {
+            gd.setColor(ContextCompat.getColor(indicatorView.getContext(), R.color.colorRed));
+        }
 
         Picasso.get().load(prof.getPicURL()).into(picView);
         textView.setText(prof.getName());

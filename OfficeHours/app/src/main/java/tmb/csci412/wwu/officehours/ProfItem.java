@@ -15,7 +15,7 @@ public class ProfItem {
 
     private boolean online;
 
-    public ProfItem(String name, String building, String dept, String room, String email, String hours, String picURL) {
+    public ProfItem(String name, String building, String dept, String room, String email, String hours, String picURL, Boolean online) {
         this.name = name;
         this.building = building;
         this.dept = dept;
@@ -23,7 +23,7 @@ public class ProfItem {
         this.email = email;
         this.hours = hours;
         this.picURL = picURL;
-        this.online = false;
+        this.online = online;
     }
 
     public ProfItem(){
