@@ -1,13 +1,28 @@
 package tmb.csci412.wwu.officehours;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.Image;
+import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 
 /**
@@ -17,15 +32,18 @@ import java.util.List;
 // Create the basic adapter extending from RecyclerView.Adapter
 // Note that we specify the custom ViewHolder which gives us access to our views
 public class ProfessorAdapter extends RecyclerView.Adapter<ProfessorAdapter.ViewHolder> {
+    private static final int IO_BUFFER_SIZE = 4 * 1024;
 
     // Provide a direct reference to each of the views within a data item
     // Used to cache the views within the item layout for fast access
     public class ViewHolder extends RecyclerView.ViewHolder {
         // Your holder should contain a member variable
         // for any view that will be set as you render a row
+        public ImageView picImageView;
         public TextView nameTextView;
         public TextView hourTextView;
         public TextView officeTextView;
+        public AppCompatImageView chevronImageView;
 
         // We also create a constructor that accepts the entire item row
         // and does the view lookups to find each subview
@@ -34,9 +52,12 @@ public class ProfessorAdapter extends RecyclerView.Adapter<ProfessorAdapter.View
             // to access the context from any ViewHolder instance.
             super(itemView);
 
+            chevronImageView = (AppCompatImageView) itemView.findViewById(R.id.chevron_right);
+            picImageView = (ImageView) itemView.findViewById(R.id.prof_pic);
             nameTextView = (TextView) itemView.findViewById(R.id.prof_name);
             hourTextView = (TextView) itemView.findViewById(R.id.hours);
             officeTextView = (TextView) itemView.findViewById(R.id.office);
+
         }
     }
 
@@ -65,10 +86,14 @@ public class ProfessorAdapter extends RecyclerView.Adapter<ProfessorAdapter.View
         ProfItem prof = profList.get(position);
 
         // Set item views based on your views and data model
+        ImageView picView = viewHolder.picImageView;
         TextView textView = viewHolder.nameTextView;
         TextView hoursText = viewHolder.hourTextView;
         TextView officeText = viewHolder.officeTextView;
+        AppCompatImageView chevronImage = viewHolder.chevronImageView;
 
+
+        Picasso.get().load(prof.getPicURL()).into(picView);
         textView.setText(prof.getName());
         hoursText.setText("Hours: " + prof.getHours());
         officeText.setText("Office: " + prof.getRoom());
@@ -78,5 +103,6 @@ public class ProfessorAdapter extends RecyclerView.Adapter<ProfessorAdapter.View
     public int getItemCount() {
         return profList.size();
     }
+
 
 }

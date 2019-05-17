@@ -54,6 +54,9 @@ public class ProfItem {
         return building;
     }
 
+    public String getPicURL() {
+        return picURL;
+    }
 
 
     public boolean isOnline() {
