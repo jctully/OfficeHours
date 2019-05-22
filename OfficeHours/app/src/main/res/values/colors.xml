@@ -1,11 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#01cdfe</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimaryDark">#1C8AAF</color>
     <color name="colorAccent">#05ffa1</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorBlack">#000000</color>
-    <color name="colorRed">#FF0000</color>
-    <color name="colorGreen">#00FF00</color>
+    <color name="colorRed">#c92222</color>
+    <color name="colorGreen">#22c922</color>
+    <color name="darkGray">#7D7D7D</color>
+    <color name="lightGray">#D8D8D8</color>
+
+    <color name="vapor_paleBlue">#ACE0EB</color>
+    <color name="vapor_purp">#A414D4</color>
+    <color name="vapor_dolphin">#8582F5</color>
+    <color name="vapor_orchid">#C44FB3</color>
+    <color name="vapor_seagreen">#119ECD</color>
+
+
+
+
+
 
 </resources>

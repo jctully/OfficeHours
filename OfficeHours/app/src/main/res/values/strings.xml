@@ -16,4 +16,5 @@
     <string name="mgrOutOffice">Out of Office</string>
     <string name="mgrNotifyStudent">Notify Next Student</string>
     <string name="mgrStatusTitle">Manually Change Status</string>
+    <string name="title_activity_professor_page">ProfessorPage</string>
 </resources>
