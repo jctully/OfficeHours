@@ -37,6 +37,10 @@ import java.util.List;
 // Create the basic adapter extending from RecyclerView.Adapter
 // Note that we specify the custom ViewHolder which gives us access to our views
 public class ProfessorAdapter extends RecyclerView.Adapter<ProfessorAdapter.ViewHolder> {
+
+    private View.OnClickListener onItemClickListener;
+
+
     private static final int IO_BUFFER_SIZE = 4 * 1024;
 
     // Provide a direct reference to each of the views within a data item
@@ -57,6 +61,9 @@ public class ProfessorAdapter extends RecyclerView.Adapter<ProfessorAdapter.View
             // Stores the itemView in a public final member variable that can be used
             // to access the context from any ViewHolder instance.
             super(itemView);
+            itemView.setTag(this);
+            itemView.setOnClickListener(onItemClickListener);
+
             indicatorTextView = (TextView) itemView.findViewById(R.id.indicator_light);
             chevronImageView = (AppCompatImageView) itemView.findViewById(R.id.chevron_right);
             picImageView = (ImageView) itemView.findViewById(R.id.prof_pic);
@@ -117,5 +124,9 @@ public class ProfessorAdapter extends RecyclerView.Adapter<ProfessorAdapter.View
         return profList.size();
     }
 
+
+    public void setOnItemClickListener(View.OnClickListener clickListener) {
+        onItemClickListener = clickListener;
+    }
 
 }

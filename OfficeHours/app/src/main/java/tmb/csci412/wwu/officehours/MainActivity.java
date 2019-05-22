@@ -14,6 +14,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 import android.util.Log;
 
@@ -38,6 +39,25 @@ public class MainActivity extends AppCompatActivity {
 
     private String TAG = "MainActivity";
     ArrayList<ProfItem> professorContents;
+
+    private View.OnClickListener onItemClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            // This viewHolder will have all required values.
+            RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) view.getTag();
+            int position = viewHolder.getAdapterPosition();
+            // viewHolder.getItemId();
+            // viewHolder.getItemViewType();
+            // viewHolder.itemView;
+            ProfItem thisItem = ProfessorContent.ITEMS.get(position);
+            //Toast.makeText(MainActivity.this, "You Clicked: " + position, Toast.LENGTH_SHORT).show();
+            Intent i = new Intent(MainActivity.this, ProfessorPage.class);
+            i.putExtra("position",position);
+
+            startActivity(i);
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,6 +111,8 @@ public class MainActivity extends AppCompatActivity {
                         adapter.notifyDataSetChanged();
                         // Attach the adapter to the recyclerview to populate items
                         rvProfs.setAdapter(adapter);
+                        adapter.setOnItemClickListener(onItemClickListener);
+
 
                     } else {
                         Log.d(TAG, "Error getting documents: ", task.getException());
