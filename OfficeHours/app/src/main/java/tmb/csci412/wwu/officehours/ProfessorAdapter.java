@@ -16,6 +16,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -28,6 +30,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -36,7 +39,7 @@ import java.util.List;
 
 // Create the basic adapter extending from RecyclerView.Adapter
 // Note that we specify the custom ViewHolder which gives us access to our views
-public class ProfessorAdapter extends RecyclerView.Adapter<ProfessorAdapter.ViewHolder> {
+public class ProfessorAdapter extends RecyclerView.Adapter<ProfessorAdapter.ViewHolder> implements Filterable {
 
     private View.OnClickListener onItemClickListener;
 
@@ -75,9 +78,11 @@ public class ProfessorAdapter extends RecyclerView.Adapter<ProfessorAdapter.View
     }
 
     private List<ProfItem> profList;
+    private List<ProfItem> profListFull;
 
     public ProfessorAdapter(List<ProfItem> profs) {
         profList = profs;
+        profListFull = new ArrayList<>(profList);
     }
 
     @Override
@@ -128,5 +133,51 @@ public class ProfessorAdapter extends RecyclerView.Adapter<ProfessorAdapter.View
     public void setOnItemClickListener(View.OnClickListener clickListener) {
         onItemClickListener = clickListener;
     }
+
+
+    // FILTER ZONE
+
+    @Override
+    public Filter getFilter() {
+        return profFilter;
+    }
+
+    private Filter profFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint){
+            List<ProfItem> filteredList = new ArrayList<>();
+
+            if (constraint == null || constraint.length() == 0) {
+                filteredList.addAll(profListFull);
+            }
+            else{
+                String filterPattern = constraint.toString().toLowerCase().trim();
+
+                for (ProfItem prof : profListFull) {
+                    if (prof.getName().toLowerCase().contains(filterPattern)) {
+                        filteredList.add(prof);
+                    }
+                    // can add prof.getDept here to check if it contains filterPatt
+                }
+            }
+
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+
+            return results;
+
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results){
+            profList.clear();
+            profList.addAll((List) results.values);
+            notifyDataSetChanged();
+        }
+    };
+
+
+
+
 
 }

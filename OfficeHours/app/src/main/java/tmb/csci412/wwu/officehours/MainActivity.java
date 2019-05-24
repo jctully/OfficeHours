@@ -6,15 +6,19 @@ import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Toast;
 import android.util.Log;
 
@@ -35,7 +39,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity  {
 
     private String TAG = "MainActivity";
     ArrayList<ProfItem> professorContents;
@@ -58,10 +62,13 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    private ProfessorAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         // Create AppBar Menu
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         myToolbar.inflateMenu(R.menu.option_menu);
@@ -70,13 +77,39 @@ public class MainActivity extends AppCompatActivity {
         myToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
+
                 if(item.getItemId() == R.id.settings) {
                     Toast.makeText(MainActivity.this, "Settings selected", Toast.LENGTH_SHORT).show();
                 }
+
                 if(item.getItemId() == R.id.login) {
                     Toast.makeText(MainActivity.this, "Login selected", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(MainActivity.this, LoginActivity.class);
                     startActivity(i);
+                }
+
+                if(item.getItemId() == R.id.action_search){
+                    Toast.makeText(MainActivity.this, "Search selected", Toast.LENGTH_SHORT).show();
+                    Log.d("SEARCH","hello");
+                    SearchView searchView = (SearchView) item.getActionView();
+
+                    searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
+
+                    searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                        @Override
+                        public boolean onQueryTextSubmit(String query) {
+                            adapter.getFilter().filter(query);
+                            return true;
+                        }
+
+                        @Override
+                        public boolean onQueryTextChange(String newText) {
+                            adapter.getFilter().filter(newText);
+                            return true;
+                        }
+                    });
+
+
                 }
                 return false;
             }
@@ -89,7 +122,6 @@ public class MainActivity extends AppCompatActivity {
 
         // Lookup the recyclerview in activity layout
         final RecyclerView rvProfs = (RecyclerView) findViewById(R.id.rvProfs);
-        final ProfessorAdapter adapter = new ProfessorAdapter(ProfessorContent.ITEMS);;
 
         //pull prof data from firestore, make objects and add to list
         db.collection("professors")
@@ -107,6 +139,7 @@ public class MainActivity extends AppCompatActivity {
                                     document.getBoolean("online")));
                         }
 
+                        adapter = new ProfessorAdapter(ProfessorContent.ITEMS);
                         // Create adapter passing in the sample user data
                         adapter.notifyDataSetChanged();
                         // Attach the adapter to the recyclerview to populate items
@@ -170,4 +203,13 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.option_menu, menu);
+        return true;
+    }
+
+
 }
