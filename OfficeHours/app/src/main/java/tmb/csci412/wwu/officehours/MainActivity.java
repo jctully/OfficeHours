@@ -78,19 +78,23 @@ public class MainActivity extends AppCompatActivity  {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
 
+                // SETTINGS/USAGE
                 if(item.getItemId() == R.id.settings) {
-                    Toast.makeText(MainActivity.this, "Settings selected", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Usage selected", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(MainActivity.this, UsageActivity.class);
+                    startActivity(intent);
                 }
 
+
+                // LOGIN
                 if(item.getItemId() == R.id.login) {
                     Toast.makeText(MainActivity.this, "Login selected", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(MainActivity.this, LoginActivity.class);
                     startActivity(i);
                 }
 
+                // SEARCH
                 if(item.getItemId() == R.id.action_search){
-                    Toast.makeText(MainActivity.this, "Search selected", Toast.LENGTH_SHORT).show();
-                    Log.d("SEARCH","hello");
                     SearchView searchView = (SearchView) item.getActionView();
 
                     searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
