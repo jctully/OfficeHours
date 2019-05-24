@@ -6,7 +6,11 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="tmb.csci412.wwu.officehours.ProfessorPage"
-    tools:showIn="@layout/activity_professor_page">
+    tools:showIn="@layout/activity_professor_page"
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
+
+    >
 
     <de.hdodenhof.circleimageview.CircleImageView
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -16,7 +20,7 @@
         android:layout_gravity="center|right"
         android:gravity="center|right"
         app:civ_border_width="2dp"
-        android:padding="8dp"
+        android:paddingTop="8dp"
         app:civ_border_color="#FF000000"/>
 
     <TextView
@@ -57,6 +61,31 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/prof_name"
+        />
+
+    <TextView
+        android:id="@+id/listLength"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+        android:textSize="18sp"
+
+        app:layout_constraintTop_toBottomOf="@id/office"
+  />
+
+    <Button
+        android:id="@+id/joinQueue"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/vapor_seagreen"
+        android:text="Join Queue"
+        android:textColor="@color/colorWhite"
+        android:padding="1sp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         />
 
 

@@ -12,6 +12,7 @@ public class ProfItem {
     private String email;
     private String hours;
     private String picURL;
+    private String[] student_list;
 
     private boolean online;
 
@@ -24,6 +25,7 @@ public class ProfItem {
         this.hours = hours;
         this.picURL = picURL;
         this.online = online;
+        this.student_list = new String[]{"Student1", "Student2"};
     }
 
     public ProfItem(){
@@ -56,6 +58,27 @@ public class ProfItem {
 
     public String getPicURL() {
         return picURL;
+    }
+
+    public String[] addToList(String name) {
+        String[] newArr = new String[student_list.length + 1];
+        for (int i=0; i<student_list.length; i++) {
+            newArr[i] = student_list[i];
+        }
+        newArr[newArr.length-1] = name;
+        return newArr;
+    }
+
+    public String[] delFromList() {
+        String[] newArr = new String[student_list.length-1];
+        for (int i=0; i<student_list.length-1; i++) {
+            newArr[i] = student_list[i+1];
+        }
+        return newArr;
+    }
+
+    public String[] getStudent_list() {
+        return student_list;
     }
 
 
