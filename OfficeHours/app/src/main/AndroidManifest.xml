@@ -26,6 +26,7 @@
                 android:resource="@xml/searchable" />
         </activity>
         <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".UsageActivity"></activity>
         <activity android:name=".ManageHoursActivity"></activity>
         <activity
             android:name=".ProfessorPage"

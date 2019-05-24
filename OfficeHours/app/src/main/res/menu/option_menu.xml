@@ -6,7 +6,7 @@
         android:id="@+id/settings"
         android:enabled="true"
         android:icon="@drawable/settings_icon_24"
-        android:title="Settings"
+        android:title="Usage"
         app:showAsAction="never"
         />
 

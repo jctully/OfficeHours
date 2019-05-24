@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="tmb.csci412.wwu.officehours.UsageActivity">
+
+    <TextView
+        android:id="@+id/usageTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="50dp"
+
+        android:text="Usage Guide"
+        android:textColor="@color/colorBlack"
+        android:textSize="20sp"
+        android:textStyle="bold"
+
+        tools:layout_editor_absoluteX="119dp"
+        tools:layout_editor_absoluteY="46dp"
+
+        app:layout_constraintBottom_toTopOf="@id/usageText1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/usageText1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="50dp"
+
+        android:text="General Features"
+        android:textColor="@color/colorBlack"
+        android:textSize="15sp"
+        android:textStyle="bold"
+
+        tools:layout_editor_absoluteX="119dp"
+        tools:layout_editor_absoluteY="46dp"
+
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/usageTitle"
+        />
+
+    <TextView
+        android:id="@+id/usageText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="50dp"
+
+        android:text="Search: Type in a name to find specific professors"
+        android:textColor="@color/colorBlack"
+        android:textSize="13sp"
+
+
+        tools:layout_editor_absoluteX="119dp"
+        tools:layout_editor_absoluteY="46dp"
+
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/usageText1"
+        />
+
+    <TextView
+        android:id="@+id/usageText3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="50dp"
+
+        android:text="Login: Opens the professor login portal to manually set hours"
+        android:textColor="@color/colorBlack"
+        android:textSize="13sp"
+
+
+        tools:layout_editor_absoluteX="119dp"
+        tools:layout_editor_absoluteY="46dp"
+
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/usageText2"
+        />
+
+
+    <TextView
+        android:id="@+id/usageText4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="50dp"
+
+        android:text="Queue: Students can queue up for a professor office"
+        android:textColor="@color/colorBlack"
+        android:textSize="13sp"
+
+
+        tools:layout_editor_absoluteX="119dp"
+        tools:layout_editor_absoluteY="46dp"
+
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/usageText3"
+        />
+
+    <TextView
+        android:id="@+id/usageText5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="50dp"
+
+        android:text="Professors"
+        android:textColor="@color/colorBlack"
+        android:textSize="15sp"
+        android:textStyle="bold"
+
+
+        tools:layout_editor_absoluteX="119dp"
+        tools:layout_editor_absoluteY="46dp"
+
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/usageText4"
+        />
+
+    <TextView
+        android:id="@+id/usageText6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="50dp"
+
+        android:text="Change status (online, busy, offline) and notify students"
+        android:textColor="@color/colorBlack"
+        android:textSize="13sp"
+
+
+        tools:layout_editor_absoluteX="119dp"
+        tools:layout_editor_absoluteY="46dp"
+
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/usageText5"
+        />
+
+    <TextView
+        android:id="@+id/usageText7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="50dp"
+
+        android:text="Note: Be conscious about how many students are on queue!"
+        android:textColor="@color/colorBlack"
+        android:textSize="13sp"
+
+
+        tools:layout_editor_absoluteX="119dp"
+        tools:layout_editor_absoluteY="46dp"
+
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/usageText6"
+        />
+
+
+
+
+
+</android.support.constraint.ConstraintLayout>
