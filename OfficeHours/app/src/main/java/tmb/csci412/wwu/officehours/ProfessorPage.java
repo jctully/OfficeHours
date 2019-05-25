@@ -70,6 +70,18 @@ public class ProfessorPage extends AppCompatActivity {
         listLength.setText("List: " + prof.getStudent_list().length);
 
 
+        // Testing ZONE
+        TextView deptText = findViewById(R.id.deptFill);
+        TextView buildOfficeText = findViewById(R.id.buildOfficeFill);
+        TextView contactText = findViewById(R.id.contactFill);
+
+        deptText.setText(prof.getDept());
+        buildOfficeText.setText(prof.getBuilding()+ " , " + prof.getRoom());
+        contactText.setText(prof.getEmail());
+
+
+
+
 
         //firebase: if change to db
         final FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -134,7 +146,7 @@ public class ProfessorPage extends AppCompatActivity {
             if (p.getName().equals(document.getId())) {
                 Log.d("AAAAAAAAAAAAAAAA", "Updating Prof " + document.getId());
                 ProfessorContent.ITEMS.set(i, new ProfItem(document.getId(),
-                        document.getString("building"), document.getString("dep"),
+                        document.getString("building"), document.getString("dept"),
                         document.getString("room"), document.getString("email"),
                         document.getString("hours"), document.getString("picURL"),
                         document.getBoolean("online")));

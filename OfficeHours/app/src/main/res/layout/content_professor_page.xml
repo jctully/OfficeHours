@@ -26,6 +26,7 @@
     <TextView
         android:id="@+id/prof_name"
         android:textStyle="bold"
+        android:textColor="@color/colorBlack"
         android:textSize="20sp"
         android:paddingTop="10dp"
         android:layout_width="wrap_content"
@@ -63,6 +64,7 @@
         app:layout_constraintLeft_toRightOf="@id/prof_name"
         />
 
+
     <TextView
         android:id="@+id/listLength"
         android:layout_width="wrap_content"
@@ -70,8 +72,10 @@
         android:paddingTop="5dp"
         android:textSize="18sp"
 
-        app:layout_constraintTop_toBottomOf="@id/office"
+        app:layout_constraintTop_toBottomOf="@+id/office"
   />
+
+
 
     <Button
         android:id="@+id/joinQueue"
@@ -87,6 +91,106 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         />
+
+    <TextView
+        android:id="@+id/deptTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+
+        android:layout_marginTop="8dp"
+        android:text="Department"
+        android:textColor="@color/colorBlack"
+        android:textSize="17sp"
+
+
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/office" />
+
+    <TextView
+        android:id="@+id/deptFill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+
+        android:layout_marginTop="8dp"
+
+        android:textColor="@color/colorBlack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/deptTitle" />
+
+    <TextView
+        android:id="@+id/buildOfficeTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+
+        android:layout_marginTop="8dp"
+        android:text="Building and Office"
+        android:textColor="@color/colorBlack"
+        android:textSize="17sp"
+
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/deptFill" />
+
+    <TextView
+        android:id="@+id/buildOfficeFill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+
+        android:layout_marginTop="8dp"
+
+        android:textColor="@color/colorBlack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buildOfficeTitle" />
+
+    <TextView
+        android:id="@+id/contactTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+
+
+        android:layout_marginTop="8dp"
+        android:text="Contact"
+        android:textColor="@color/colorBlack"
+        android:textSize="17sp"
+
+
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buildOfficeFill" />
+
+    <TextView
+        android:id="@+id/contactFill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+
+        android:layout_marginTop="8dp"
+
+
+        android:textColor="@color/colorBlack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contactTitle" />
 
 
 </android.support.constraint.ConstraintLayout>

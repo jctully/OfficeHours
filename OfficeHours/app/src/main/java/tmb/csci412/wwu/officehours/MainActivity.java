@@ -137,7 +137,7 @@ public class MainActivity extends AppCompatActivity  {
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             Log.d(TAG, document.getId() + " => " + document.getData());
                             ProfessorContent.addItem(new ProfItem(document.getId(),
-                                document.getString("building"), document.getString("dep"),
+                                document.getString("building"), document.getString("dept"),
                                 document.getString("room"), document.getString("email"),
                                 document.getString("hours"), document.getString("picURL"),
                                     document.getBoolean("online")));
@@ -199,7 +199,7 @@ public class MainActivity extends AppCompatActivity  {
             if (p.getName().equals(document.getId())) {
                 Log.d("AAAAAAAAAAAAAAAA", "Updating Prof " + document.getId());
                 ProfessorContent.ITEMS.set(i, new ProfItem(document.getId(),
-                        document.getString("building"), document.getString("dep"),
+                        document.getString("building"), document.getString("dept"),
                         document.getString("room"), document.getString("email"),
                         document.getString("hours"), document.getString("picURL"),
                         document.getBoolean("online")));
