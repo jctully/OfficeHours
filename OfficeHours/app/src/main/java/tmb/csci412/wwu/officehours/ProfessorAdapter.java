@@ -154,10 +154,14 @@ public class ProfessorAdapter extends RecyclerView.Adapter<ProfessorAdapter.View
                 String filterPattern = constraint.toString().toLowerCase().trim();
 
                 for (ProfItem prof : profListFull) {
+                    // NAME FILTER
                     if (prof.getName().toLowerCase().contains(filterPattern)) {
                         filteredList.add(prof);
                     }
-                    // can add prof.getDept here to check if it contains filterPatt
+                    // DEPARTMENTS FILTER
+                    if (prof.getDept().toLowerCase().contains(filterPattern)){
+                        filteredList.add(prof);
+                    }
                 }
             }
 

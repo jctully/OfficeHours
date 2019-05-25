@@ -8,6 +8,4 @@
 
     <include layout="@layout/content_professor_page" />
 
-
-
 </android.support.design.widget.CoordinatorLayout>

@@ -60,6 +60,10 @@ public class ProfItem {
         return picURL;
     }
 
+    public String getDept() {return dept;}
+
+    public String getEmail() {return email;}
+
     public String[] addToList(String name) {
         String[] newArr = new String[student_list.length + 1];
         for (int i=0; i<student_list.length; i++) {
