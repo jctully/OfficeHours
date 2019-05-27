@@ -117,9 +117,8 @@ public class ProfessorPage extends AppCompatActivity {
         joinQueue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String[] newArr = prof.addToList("Joseph");
                 profRef
-                        .update("student_list", FieldValue.arrayUnion("joseph"))
+                        .update("student_list", FieldValue.arrayUnion("ken"))
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {

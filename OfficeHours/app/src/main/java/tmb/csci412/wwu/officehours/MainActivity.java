@@ -50,9 +50,6 @@ public class MainActivity extends AppCompatActivity  {
             // This viewHolder will have all required values.
             RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) view.getTag();
             int position = viewHolder.getAdapterPosition();
-            // viewHolder.getItemId();
-            // viewHolder.getItemViewType();
-            // viewHolder.itemView;
             ProfItem thisItem = ProfessorContent.ITEMS.get(position);
             //Toast.makeText(MainActivity.this, "You Clicked: " + position, Toast.LENGTH_SHORT).show();
             Intent i = new Intent(MainActivity.this, ProfessorPage.class);
