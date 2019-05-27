@@ -12,34 +12,47 @@
 
     >
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/prof_pic"
         android:layout_width="72dp"
         android:layout_height="72dp"
         android:layout_gravity="center|right"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:gravity="center|right"
-        app:civ_border_width="2dp"
         android:paddingTop="8dp"
-        app:civ_border_color="#FF000000"/>
+        app:civ_border_color="#FF000000"
+        app:civ_border_width="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/prof_name"
-        android:textStyle="bold"
-        android:textColor="@color/colorBlack"
-        android:textSize="20sp"
-        android:paddingTop="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintLeft_toRightOf="@id/prof_pic" />
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:paddingTop="10dp"
+        android:textColor="@color/colorBlack"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/prof_pic" />
 
     <TextView
         android:id="@+id/hours"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:paddingTop="5dp"
-        app:layout_constraintTop_toBottomOf="@id/prof_name"
-        app:layout_constraintLeft_toRightOf="@id/prof_pic"/>
+        android:textColor="@color/colorBlack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/prof_name" />
 
     <TextView
         android:id="@+id/office"
@@ -55,14 +68,16 @@
         android:layout_height="10dip"
 
 
-        android:background="@drawable/indicator_drawable"
-        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
 
-        app:layout_constraintVertical_bias="0.03"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/indicator_drawable"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/prof_name"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.59"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.111" />
 
 
     <TextView
@@ -191,6 +206,40 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/contactTitle" />
+    <TextView
+        android:id="@+id/waitlistTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+
+
+        android:layout_marginTop="8dp"
+        android:text="Waitlist Information"
+        android:textColor="@color/colorBlack"
+        android:textSize="17sp"
+
+
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contactFill" />
+
+    <TextView
+        android:id="@+id/waitListFill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+
+
+        android:layout_marginTop="8dp"
+        android:textColor="@color/colorBlack"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/waitlistTitle" />
+
 
 
 </android.support.constraint.ConstraintLayout>
