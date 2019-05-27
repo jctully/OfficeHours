@@ -50,8 +50,7 @@ public class ProfessorPage extends AppCompatActivity {
         ImageView picView = findViewById(R.id.prof_pic);
         TextView textView = findViewById(R.id.prof_name);
         TextView hoursText = findViewById(R.id.hours);
-        TextView officeText = findViewById(R.id.office);
-        final TextView listLength = findViewById(R.id.listLength);
+
         Button joinQueue = findViewById(R.id.joinQueue);
 
         findViewById(R.id.indicator_light);
@@ -65,19 +64,24 @@ public class ProfessorPage extends AppCompatActivity {
 
         Picasso.get().load(prof.getPicURL()).into(picView);
         textView.setText(prof.getName());
-        hoursText.setText("Hours: " + prof.getHours());
-        officeText.setText("Office: " + prof.getRoom());
-        listLength.setText("List: " + prof.getStudent_list().length);
+
+
+        hoursText.setText(prof.getHours());
+
+
+
 
 
         // Testing ZONE
         TextView deptText = findViewById(R.id.deptFill);
         TextView buildOfficeText = findViewById(R.id.buildOfficeFill);
         TextView contactText = findViewById(R.id.contactFill);
+        final TextView listLength = findViewById(R.id.waitListFill);
 
         deptText.setText(prof.getDept());
         buildOfficeText.setText(prof.getBuilding()+ " , " + prof.getRoom());
         contactText.setText(prof.getEmail());
+        listLength.setText("Queue Size: " + prof.getStudent_list().length);
 
 
 
