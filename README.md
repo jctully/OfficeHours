@@ -22,3 +22,4 @@ Joseph Tully
 
 [Checkpoint 1](https://gitlab.cs.wwu.edu/farriem/officehours/wikis/Checkpoint-1)  
 [Checkpoint 2](https://gitlab.cs.wwu.edu/farriem/officehours/wikis/Checkpoint-2)
+[Checkpoint 3](https://gitlab.cs.wwu.edu/farriem/officehours/wikis/Checkpoint-3)
