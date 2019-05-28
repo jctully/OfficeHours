@@ -41,7 +41,7 @@
         android:textSize="14sp"
         android:textStyle="bold"
 
-        app:layout_constraintBottom_toBottomOf="@+id/mgrOfficeOverride"
+        app:layout_constraintBottom_toBottomOf="@id/mgrTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mgrTitle"/>
