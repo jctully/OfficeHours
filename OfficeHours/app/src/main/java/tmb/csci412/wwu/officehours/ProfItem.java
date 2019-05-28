@@ -1,5 +1,7 @@
 package tmb.csci412.wwu.officehours;
 
+import java.util.ArrayList;
+
 /**
  * Created by tullyj2 on 5/16/19.
  */
@@ -12,11 +14,12 @@ public class ProfItem {
     private String email;
     private String hours;
     private String picURL;
-    private String[] student_list;
+    private ArrayList<String> student_list;
 
     private boolean online;
 
-    public ProfItem(String name, String building, String dept, String room, String email, String hours, String picURL, Boolean online) {
+    public ProfItem(String name, String building, String dept, String room, String email, String hours, String picURL, Boolean online,
+                    ArrayList<String> student_list) {
         this.name = name;
         this.building = building;
         this.dept = dept;
@@ -25,18 +28,11 @@ public class ProfItem {
         this.hours = hours;
         this.picURL = picURL;
         this.online = online;
-        this.student_list = new String[]{"Student1", "Student2"};
+        this.student_list = student_list;
     }
 
-    public ProfItem(){
-        this.name = "name";
-        this.building = "building";
-        this.dept = "dept";
-        this.room = "room";
-        this.email = "email";
-        this.hours = "hours";
-        this.picURL = "picURL";
-        this.online = false;
+    public ProfItem() {
+
     }
 
     //getters
@@ -60,28 +56,15 @@ public class ProfItem {
         return picURL;
     }
 
-    public String getDept() {return dept;}
-
-    public String getEmail() {return email;}
-
-    public String[] addToList(String name) {
-        String[] newArr = new String[student_list.length + 1];
-        for (int i=0; i<student_list.length; i++) {
-            newArr[i] = student_list[i];
-        }
-        newArr[newArr.length-1] = name;
-        return newArr;
+    public String getDept() {
+        return dept;
     }
 
-    public String[] delFromList() {
-        String[] newArr = new String[student_list.length-1];
-        for (int i=0; i<student_list.length-1; i++) {
-            newArr[i] = student_list[i+1];
-        }
-        return newArr;
+    public String getEmail() {
+        return email;
     }
 
-    public String[] getStudent_list() {
+    public ArrayList<String> getStudent_list() {
         return student_list;
     }
 

@@ -54,9 +54,6 @@ public class MainActivity extends AppCompatActivity  {
             // This viewHolder will have all required values.
             RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) view.getTag();
             int position = viewHolder.getAdapterPosition();
-            // viewHolder.getItemId();
-            // viewHolder.getItemViewType();
-            // viewHolder.itemView;
             ProfItem thisItem = ProfessorContent.ITEMS.get(position);
             //Toast.makeText(MainActivity.this, "You Clicked: " + position, Toast.LENGTH_SHORT).show();
             Intent i = new Intent(MainActivity.this, ProfessorPage.class);
@@ -145,11 +142,7 @@ public class MainActivity extends AppCompatActivity  {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             Log.d(TAG, document.getId() + " => " + document.getData());
-                            ProfessorContent.addItem(new ProfItem(document.getId(),
-                                document.getString("building"), document.getString("dept"),
-                                document.getString("room"), document.getString("email"),
-                                document.getString("hours"), document.getString("picURL"),
-                                    document.getBoolean("online")));
+                            ProfessorContent.addItem(document.toObject(ProfItem.class));
                         }
 
                         adapter = new ProfessorAdapter(ProfessorContent.ITEMS);
@@ -166,6 +159,7 @@ public class MainActivity extends AppCompatActivity  {
                 }
             });
 
+        //professor object modified
         db.collection("professors")
             .addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
@@ -179,15 +173,12 @@ public class MainActivity extends AppCompatActivity  {
                 for (DocumentChange dc : snapshots.getDocumentChanges()) {
                     switch (dc.getType()) {
                         case ADDED:
-                            Log.d(TAG, "New city: " + dc.getDocument().getData());
                             break;
                         case MODIFIED:
-                            Log.d(TAG, "Modified city: " + dc.getDocument().getData());
                             modifyProfList(dc.getDocument());
                             adapter.notifyDataSetChanged();
                             break;
                         case REMOVED:
-                            Log.d(TAG, "Removed city: " + dc.getDocument().getData());
                             break;
                     }
                 }
@@ -207,11 +198,7 @@ public class MainActivity extends AppCompatActivity  {
             p=ProfessorContent.ITEMS.get(i);
             if (p.getName().equals(document.getId())) {
                 Log.d("AAAAAAAAAAAAAAAA", "Updating Prof " + document.getId());
-                ProfessorContent.ITEMS.set(i, new ProfItem(document.getId(),
-                        document.getString("building"), document.getString("dept"),
-                        document.getString("room"), document.getString("email"),
-                        document.getString("hours"), document.getString("picURL"),
-                        document.getBoolean("online")));
+                ProfessorContent.ITEMS.set(i, document.toObject(ProfItem.class));
             }
         }
 

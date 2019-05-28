@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
 
     // Login Button Tapped
     public void onLogin(final View view){
-        String email = emailInput.getText().toString();
+        final String email = emailInput.getText().toString();
         String pass = passInput.getText().toString();
 
         // Email Empty
@@ -59,6 +59,8 @@ public class LoginActivity extends AppCompatActivity {
         boolean isValid = validateCredentials(email);
 
         if(isValid){
+            // get the user
+
             // Sign-in using FireBase Auth
             mAuth.signInWithEmailAndPassword(email, pass)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -67,6 +69,7 @@ public class LoginActivity extends AppCompatActivity {
                             // MOVE TO PROF HOUR MANAGER
                             if (task.isSuccessful()) {
                                 Intent intent = new Intent(view.getContext(), ManageHoursActivity.class);
+                                intent.putExtra("email", email);
                                 startActivity(intent);
                             }
                             // WRONG PASSWORD

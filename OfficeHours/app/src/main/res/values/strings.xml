@@ -17,4 +17,6 @@
     <string name="mgrNotifyStudent">Notify Next Student</string>
     <string name="mgrStatusTitle">Manually Change Status</string>
     <string name="title_activity_professor_page">ProfessorPage</string>
+    <string name="student_name">Student Name</string>
+    <string name="student_topic">Topic</string>
 </resources>

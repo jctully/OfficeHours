@@ -1,6 +1,6 @@
 package tmb.csci412.wwu.officehours;
 
-import android.*;
+import android.app.Dialog;
 import android.Manifest;
 import android.app.IntentService;
 import android.app.PendingIntent;
@@ -14,19 +14,26 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatImageView;
-import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -61,6 +68,12 @@ import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 import static com.google.firebase.firestore.DocumentChange.Type.REMOVED;
 
 public class ProfessorPage extends AppCompatActivity {
+    Dialog studentDialog;
+    DocumentReference profRef;
+
+    @BindView(R.id.bottom_sheet)
+    LinearLayout layoutBottomSheet;
+    BottomSheetBehavior sheetBehavior;
 
     private static final String TAG = "ProfessorPage Class:";
     private double userLongitude;
@@ -73,11 +86,14 @@ public class ProfessorPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_professor_page);
-        Intent myIntent = getIntent();
+        ButterKnife.bind(this);
+        sheetBehavior = BottomSheetBehavior.from(layoutBottomSheet);
 
-        // Obtain specific professor tapped on
-        final int i = myIntent.getIntExtra("position", 0);
-        final ProfItem prof = ProfessorContent.ITEMS.get(i);
+        Intent myIntent = getIntent();
+        final int position = myIntent.getIntExtra("position", 0);
+        studentDialog = new Dialog(this);
+
+        final ProfItem prof = ProfessorContent.ITEMS.get(position);
 
         // Obtain UI elements
         final TextView listLength = findViewById(R.id.waitListFill);
@@ -88,7 +104,7 @@ public class ProfessorPage extends AppCompatActivity {
         TextView buildOfficeText = findViewById(R.id.buildOfficeFill);
         TextView contactText = findViewById(R.id.contactFill);
         ImageView picView = findViewById(R.id.prof_pic);
-        Button joinQueue = findViewById(R.id.joinQueue);
+        final Button joinQueue = findViewById(R.id.joinQueue);
 
 
         // Determine if user is in range of buildings (Comm, Miller, Humanities)
@@ -166,7 +182,7 @@ public class ProfessorPage extends AppCompatActivity {
         deptText.setText(prof.getDept());
         buildOfficeText.setText(prof.getBuilding()+ " , " + prof.getRoom());
         contactText.setText(prof.getEmail());
-        listLength.setText("Queue Size: " + prof.getStudent_list().length);
+        listLength.setText("Queue Size: " + prof.getStudent_list().size());
 
 
 
@@ -184,19 +200,18 @@ public class ProfessorPage extends AppCompatActivity {
                         if (e != null) {
                             return;
                         }
-
                         for (DocumentChange dc : snapshots.getDocumentChanges()) {
                             switch (dc.getType()) {
                                 case ADDED:
                                     break;
                                 case MODIFIED:
                                     modifyProfList(dc.getDocument());
-                                    if (ProfessorContent.ITEMS.get(i).isOnline()) {
+                                    if (ProfessorContent.ITEMS.get(position).isOnline()) {
                                         gd.setColor(getResources().getColor(R.color.colorGreen));
                                     } else {
                                         gd.setColor(getResources().getColor(R.color.colorRed));
                                     }
-                                    listLength.setText("List: " + ProfessorContent.ITEMS.get(i).getStudent_list().length);
+                                    listLength.setText("List: " + ProfessorContent.ITEMS.get(position).getStudent_list().size());
                                     break;
                                 case REMOVED:
                                     break;
@@ -229,7 +244,6 @@ public class ProfessorPage extends AppCompatActivity {
             }
         });
 
-
     }
 
     public void modifyProfList(QueryDocumentSnapshot document) {
@@ -239,20 +253,69 @@ public class ProfessorPage extends AppCompatActivity {
             p=ProfessorContent.ITEMS.get(i);
             if (p.getName().equals(document.getId())) {
                 Log.d("AAAAAAAAAAAAAAAA", "Updating Prof " + document.getId());
-                ProfessorContent.ITEMS.set(i, new ProfItem(document.getId(),
-                        document.getString("building"), document.getString("dept"),
-                        document.getString("room"), document.getString("email"),
-                        document.getString("hours"), document.getString("picURL"),
-                        document.getBoolean("online")));
+                ProfessorContent.ITEMS.set(i, document.toObject(ProfItem.class));
             }
         }
 
     }
 
+    /**
+     * click join queue to toggle the bottom sheet
+     */
+    @OnClick(R.id.joinQueue)
+    public void toggleBottomSheet() {
+        if (sheetBehavior.getState() != BottomSheetBehavior.STATE_EXPANDED) {
+            sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+        } else {
+            sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+        }
+    }
+    
     public boolean checkIfInRange(float[] results){
         float distanceInMeters = results[0];
         return distanceInMeters < 100;
     }
 
+    public void onSubmitButtonClick(View v) {
+        View sheet = findViewById(R.id.bottom_sheet);
+        EditText studentNameInput = (EditText) sheet.findViewById(R.id.student_name_input);
+        EditText studentTopicInput = (EditText) sheet.findViewById(R.id.student_topic_input);
+        final Button submitButton = (Button) sheet.findViewById(R.id.submit_button);
+
+        studentNameInput.setOnEditorActionListener(new EditText.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_NEXT) {
+                   return true;
+                }
+                return false;
+            }
+        });
+
+        final String studentName = studentNameInput.getText().toString();
+        final String studentTopic = studentTopicInput.getText().toString();
+
+        // Email Empty
+        if(TextUtils.isEmpty(studentName)) {
+            studentNameInput.setError("This field cannot be empty!");
+            return;
+        }
+        Log.d("AAAAAAAAAAAAAAAAAAAAAA", "In OnCLick");
+        profRef
+                .update("student_list", FieldValue.arrayUnion(studentName))
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(getApplicationContext(),"You were added to queue",Toast.LENGTH_SHORT);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(getApplicationContext(),"Error joining queue",Toast.LENGTH_SHORT);
+                    }
+                });
+        sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+    }
 
 }
