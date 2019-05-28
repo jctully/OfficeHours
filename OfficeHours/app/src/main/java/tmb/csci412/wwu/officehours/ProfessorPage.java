@@ -219,31 +219,7 @@ public class ProfessorPage extends AppCompatActivity {
                         }
                     }
                 });
-
-        final DocumentReference profRef = db.collection("professors").document(prof.getName());
-
-        joinQueue.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                String[] newArr = prof.addToList("Joseph");
-                profRef
-                        .update("student_list", FieldValue.arrayUnion("Ducky"))
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                Toast.makeText(getApplicationContext(),"You were added to queue",Toast.LENGTH_SHORT);
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(getApplicationContext(),"Error joining queue",Toast.LENGTH_SHORT);
-                            }
-                        });
-            }
-        });
-
+        profRef = db.collection("professors").document(prof.getName());
     }
 
     public void modifyProfList(QueryDocumentSnapshot document) {
@@ -301,6 +277,7 @@ public class ProfessorPage extends AppCompatActivity {
             return;
         }
         Log.d("AAAAAAAAAAAAAAAAAAAAAA", "In OnCLick");
+
         profRef
                 .update("student_list", FieldValue.arrayUnion(studentName))
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
