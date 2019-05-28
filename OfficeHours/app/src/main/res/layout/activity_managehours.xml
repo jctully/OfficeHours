@@ -46,40 +46,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mgrTitle"/>
 
-    <RadioGroup
-        android:id="@+id/mgrOfficeOverride"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        app:layout_constraintBottom_toTopOf="@+id/mgrWaitlist"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/mgrStatusTitle" >
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/sound"
-            android:text="@string/mgrInOffice" />
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/vibration"
-            android:text="@string/mgrBusy" />
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/silent"
-            android:text="@string/mgrOutOffice"
-
-            />
-
-
-    </RadioGroup>
-
-
     <TextView
         android:id="@+id/mgrWaitlist"
         android:layout_width="wrap_content"
@@ -95,13 +61,14 @@
         app:layout_constraintBottom_toBottomOf="@+id/mgrNotifyButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mgrOfficeOverride"/>
+        app:layout_constraintTop_toBottomOf="@+id/onlineSwitch"/>
 
     <Button
         android:id="@+id/mgrNotifyButton"
-        android:layout_width="100dp"
+        android:layout_width="match_parent"
         android:layout_height="75dp"
         android:layout_centerHorizontal="true"
+        android:backgroundTint="@color/vapor_seagreen"
 
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
@@ -112,10 +79,22 @@
 
 
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/mgrWaitlist"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintVertical_bias="1"
 
+        />
+
+    <Switch
+        android:id="@+id/onlineSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Go Online  "
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/mgrStatusTitle"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
 
         />
 

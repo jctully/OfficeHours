@@ -14,6 +14,7 @@ public class ProfessorContent {
 
     public static final List<ProfItem> ITEMS = new ArrayList<>();
     public static final Map<String, ProfItem> ITEM_MAP = new HashMap<>();
+    public static final Map<String, String> STUDENT_MAP = new HashMap<>();
     public static int lastProfId = 0;
 
     public ProfessorContent() {
@@ -22,6 +23,10 @@ public class ProfessorContent {
     public static void addItem(ProfItem p) {
         ITEMS.add(p);
         ITEM_MAP.put(p.getName(), p);
+    }
+
+    public static void addStudentToMap(String studentName, String studentTopic) {
+        STUDENT_MAP.put(studentName, studentTopic);
     }
 
 }

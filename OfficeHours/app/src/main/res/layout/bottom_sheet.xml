@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottom_sheet"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#fff"
+    android:orientation="vertical"
+    android:padding="10dp"
+    app:behavior_hideable="true"
+    app:behavior_peekHeight="0dp"
+    app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Join Queue"
+        android:textSize="30sp"
+        android:textColor="@color/colorBlack"/>
+    <EditText
+        android:id="@+id/student_name_input"
+        android:inputType="text"
+
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/student_name"
+        android:nextFocusDown="@id/student_topic_input"
+        android:nextFocusForward="@id/student_topic_input"
+        android:singleLine="true"
+
+        android:imeOptions="actionNext"/>
+
+    <EditText
+        android:id="@+id/student_topic_input"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/student_topic"
+        android:imeOptions="actionDone"/>
+
+    <Button
+        android:onClick="onSubmitButtonClick"
+        android:id="@+id/submit_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"/>
+</LinearLayout>
