@@ -86,7 +86,6 @@ public class MainActivity extends AppCompatActivity  {
 
                 // SETTINGS/USAGE
                 if(item.getItemId() == R.id.settings) {
-                    Toast.makeText(MainActivity.this, "Usage selected", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(MainActivity.this, UsageActivity.class);
                     startActivity(intent);
                 }
@@ -94,7 +93,6 @@ public class MainActivity extends AppCompatActivity  {
 
                 // LOGIN
                 if(item.getItemId() == R.id.login) {
-                    Toast.makeText(MainActivity.this, "Login selected", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(MainActivity.this, LoginActivity.class);
                     startActivity(i);
                 }

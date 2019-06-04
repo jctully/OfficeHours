@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -37,7 +38,7 @@ import java.util.Map;
 
 public class ManageHoursActivity extends AppCompatActivity {
     private TextView studWaitlist;
-    private String profName;
+    static String profName;
     public final String TAG = "MANAGEHOURSACTIVITY";
 
     @Override
@@ -85,8 +86,7 @@ public class ManageHoursActivity extends AppCompatActivity {
                     }
                 });
 
-
-        Switch onlineSwitch = (Switch) findViewById(R.id.onlineSwitch);
+        final Switch onlineSwitch = (Switch) findViewById(R.id.onlineSwitch);
         onlineSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 // do something, the isChecked will be
@@ -126,7 +126,23 @@ public class ManageHoursActivity extends AppCompatActivity {
 
             }
         });
-
+        if (profName != null) {
+            DocumentReference profRef = db.collection("professors").document(profName);
+            profRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful() ) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists() ) {
+                            Log.d(TAG, "Successfully retrieved snapshot");
+                            if (document.get("online").equals(true) ) {
+                                onlineSwitch.setChecked(true);
+                            }
+                        }
+                    }
+                }
+            });
+        }
         Button notifyStudentsButton = (Button) findViewById(R.id.mgrNotifyButton);
         notifyStudentsButton.setOnClickListener(new View.OnClickListener() {
             @Override
