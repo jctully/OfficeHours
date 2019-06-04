@@ -63,6 +63,7 @@ public class ManageHoursActivity extends AppCompatActivity {
         studWaitlist = findViewById(R.id.mgrWaitlist);
 
         final FirebaseFirestore db = FirebaseFirestore.getInstance();
+        final Switch onlineSwitch = (Switch) findViewById(R.id.onlineSwitch);
         // Try to get Phil's Waitlist NOTE: this will be changed later,
         // we are just testing if we can query Firestore
         db.collection("professors")
@@ -74,6 +75,9 @@ public class ManageHoursActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             DocumentSnapshot document = task.getResult().getDocuments().get(0);
                             profName = document.getId();
+                            if (document.get("online").equals(true) ) {
+                                onlineSwitch.setChecked(true);
+                            }
                             ArrayList<String> studList = (ArrayList<String>) document.get("student_list");
                             for (int i=0; i<studList.size(); i++) {
                                 Log.d(TAG, studList.get(i));
@@ -86,7 +90,6 @@ public class ManageHoursActivity extends AppCompatActivity {
                     }
                 });
 
-        final Switch onlineSwitch = (Switch) findViewById(R.id.onlineSwitch);
         onlineSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 // do something, the isChecked will be
@@ -126,23 +129,6 @@ public class ManageHoursActivity extends AppCompatActivity {
 
             }
         });
-        if (profName != null) {
-            DocumentReference profRef = db.collection("professors").document(profName);
-            profRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                    if (task.isSuccessful() ) {
-                        DocumentSnapshot document = task.getResult();
-                        if (document.exists() ) {
-                            Log.d(TAG, "Successfully retrieved snapshot");
-                            if (document.get("online").equals(true) ) {
-                                onlineSwitch.setChecked(true);
-                            }
-                        }
-                    }
-                }
-            });
-        }
         Button notifyStudentsButton = (Button) findViewById(R.id.mgrNotifyButton);
         notifyStudentsButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -205,4 +191,5 @@ public class ManageHoursActivity extends AppCompatActivity {
         }
 
     }
+
 }
